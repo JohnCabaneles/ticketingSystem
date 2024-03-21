@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\PriorityController;
 use App\Http\Controllers\Admin\StatusController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,4 +22,5 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 
 Route::prefix('admin')->group(function() {
     Route::apiResource('/status', StatusController::class);
+    Route::apiResource('/priority',PriorityController::class);
 });
