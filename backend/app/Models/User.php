@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Admin\Status;
+use App\Models\Admin\Priority;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -47,5 +48,9 @@ class User extends Authenticatable
 
     public function status() {
         return $this->hasOne(Status::class, 'user_id');
+    }
+
+    public function priority() {
+        return $this->hasOne(Priority::class, 'user_id');
     }
 }
