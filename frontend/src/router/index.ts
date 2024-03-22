@@ -1,4 +1,4 @@
-import TheDashboard from '@/views/TheDashboard.vue'
+import SignUp from '../components/SignUp.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -6,8 +6,8 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'dashboard',
-      component: TheDashboard
+      name: 'signup',
+      component: SignUp
     }
   ]
 })
