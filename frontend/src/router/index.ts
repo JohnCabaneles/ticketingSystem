@@ -1,4 +1,4 @@
-import SignUp from '../components/SignUp.vue'
+import SignIn from '../components/SignIn.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import AdminDashboard from '../views/AdminDashboard.vue'
 
@@ -7,8 +7,8 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'signup',
-      component: SignUp
+      name: 'signIn',
+      component: SignIn
     },
     {
       path: '/admin/dashboard',

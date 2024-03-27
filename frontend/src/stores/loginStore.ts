@@ -33,7 +33,7 @@ export const useLoginStore = defineStore('loginStore', {
                 }
 
                 console.log('success', response.data)
-                // router.push('/dashboard')
+                // router.push('/admin/dashboard')
             } catch (error) {
                 console.error('Invalid credentials', error)
             }
