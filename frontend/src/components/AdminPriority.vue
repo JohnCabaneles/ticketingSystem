@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import SideBar from './SideBar.vue'
+import Sidebar from './SideBar.vue'
 </script>
 <template>
   <div class="w-screen h-screen flex">
-    <SideBar />
+    <Sidebar />
     <!-- Main -->
     <div class="w-full h-full">
       <div class="h-[50px] bg-gray-900 text-white">Header</div>
@@ -16,6 +16,7 @@ import SideBar from './SideBar.vue'
                   class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                   for="grid-first-name"
                 >
+                  Create Priority
                 </label>
                 <input
                   class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
