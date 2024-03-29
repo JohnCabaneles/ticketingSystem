@@ -9,4 +9,4 @@ import AdminPriority from '../components/AdminPriority.vue';
         <SideBar />
         <AdminPriority />
     </div>
-</template>../components/AdminPriority.vue
+</template>
