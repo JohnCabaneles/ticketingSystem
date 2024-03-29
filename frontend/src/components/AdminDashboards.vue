@@ -1,9 +1,6 @@
 <script setup lang="ts">
-import SideBar from './SideBar.vue'
 </script>
 <template>
-  <div class="w-screen h-screen flex">
-    <SideBar />
     <!-- Main -->
     <div class="w-full h-full">
       <div class="h-[50px] bg-gray-900 text-white">Header</div>
@@ -31,5 +28,4 @@ import SideBar from './SideBar.vue'
       </div>
     </div>
     <!-- Main -->
-  </div>
 </template>
