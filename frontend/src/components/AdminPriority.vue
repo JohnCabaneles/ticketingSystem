@@ -1,10 +1,6 @@
 <script setup lang="ts">
-import Sidebar from './SideBar.vue'
-import WelcomeBanner from './WelcomeBanner.vue'
 </script>
 <template>
-  <div class="w-screen h-screen flex">
-    <Sidebar />
     <!-- Main -->
     <div class="w-full h-full">
       <div class="h-[50px] bg-gray-900 text-white">Header</div>
@@ -45,5 +41,4 @@ import WelcomeBanner from './WelcomeBanner.vue'
       </div>
     </div>
     <!-- Main -->
-  </div>
 </template>
