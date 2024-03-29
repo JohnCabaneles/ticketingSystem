@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import WelcomeBanner from '../components/WelcomeBanner.vue'
+
 </script>
 <template>
     <!-- Main -->
