@@ -20,7 +20,7 @@ export const useStatusStore = defineStore('statusStore', {
         async getStatus() {
             this.loading = true
             try {
-                const response = await axios.get('/api/status')
+                const response = await axios.get('/api/admin/status')
                 this.statuses = response.data
                 this.loading = false
             } catch (error) {
@@ -30,7 +30,7 @@ export const useStatusStore = defineStore('statusStore', {
 
         async addStatus(status: Status) {
             try {
-                const response = await axios.post('/api/status', {
+                const response = await axios.post('/api/admin/status', {
                     name: status.name
                 })
                 this.statuses.push(response.data)
@@ -48,7 +48,7 @@ export const useStatusStore = defineStore('statusStore', {
             }
 
             try {
-                const response = await axios.put(`/api/status/${id}`, updateData)
+                const response = await axios.put(`/api/admin/status/${id}`, updateData)
 
                 const updatedIndex = this.statuses.findIndex(statuses => statuses.id === id)
                 this.getStatus()
@@ -67,7 +67,7 @@ export const useStatusStore = defineStore('statusStore', {
 
         async deleteStatus(id: number) {
             try {
-                const response = await axios.delete(`/api/status/${id}`)
+                const response = await axios.delete(`/api/admin/status/${id}`)
                 console.log('Status deleted successfully', response)
                 this.getStatus()
             } catch (error) {
