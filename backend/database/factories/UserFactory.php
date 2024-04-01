@@ -25,7 +25,7 @@ class UserFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
+            'email' => 'admin@admin.com',
             'department' => fake()->text(),
             'contact_number' => fake()->numberBetween(0, 9),
             'role' => 'superAdmin',
