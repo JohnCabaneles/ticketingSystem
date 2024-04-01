@@ -1,4 +1,16 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import axios from 'axios'
+   
+   const signOut = async () => {
+     try {
+       await axios.post('/logout', null, {
+         withCredentials: true,
+       })
+     } catch (error) {
+       console.error(error)
+     }
+   }
+   </script>
 
 <template>
   <!-- Side Bar -->
@@ -30,6 +42,13 @@
             to="/admin/department"
             class="inline-flex relative items-center py-[10px] px-[10px] my-[10px] w-full text-sm font-medium rounded-md rounded-b-lg hover:bg-gray-300 hover:text-gray-600"
             >Departments
+          </router-link>
+          <router-link
+            to="/" custom v-slot="{href, navigate}" @click="signOut"> 
+            <li>
+              <a :href="href" @click="navigate" class="inline-flex relative items-center py-[10px] px-[10px] my-[10px] w-full text-sm font-medium rounded-md rounded-b-lg hover:bg-gray-300 hover:text-gray-600">Logout
+              </a>
+            </li>
           </router-link>
         </div>
       </div>
