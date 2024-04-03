@@ -171,7 +171,7 @@ const resetForm = () => {
                                   <div class="w-4/12">
                                       <div class="modal-content bg-white p-6 rounded-lg shadow-lg relative">
                                     <div class="mb-6">
-                                      <h1 class="text-2xl">Fill up the form to enroll new students.</h1>
+                                      <h1 class="text-2xl">Fill up the form to edit status.</h1>
                                     </div>
                                     <button @click="showUpdateModal = false" class="close-button absolute top-0 right-0 p-2 text-black rounded-sm px-3 py-1 focus:outline-none text-2xl">×</button>
                                     <form @submit.prevent="updateForm">
