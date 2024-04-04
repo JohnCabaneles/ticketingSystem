@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('create_ticket', function (Blueprint $table) {
+        Schema::create('priorities', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('departments_id')->constrained('departments');
-            $table->foreignId('priorities_id')->constrained('priorities');
-            $table->foreignId('statuses_id')->constrained('statuses')->nullable();
-            $table->string('subject');
-            $table->longText('message');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('create_ticket');
+        Schema::dropIfExists('priorities');
     }
 };
