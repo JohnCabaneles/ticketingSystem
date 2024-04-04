@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\Admin\DepartmentController;
-use App\Http\Controllers\Admin\PriorityController;
-use App\Http\Controllers\Admin\StatusController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\StatusController;
+use App\Http\Controllers\Admin\PriorityController;
+use App\Http\Controllers\Admin\DepartmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 
 Route::prefix('admin')->group(function() {
     Route::apiResource('/status', StatusController::class);
+    Route::apiResource('/role', RoleController::class);
     Route::apiResource('/department', DepartmentController::class);
     Route::apiResource('/priority',PriorityController::class);
 });

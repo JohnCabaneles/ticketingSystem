@@ -4,9 +4,10 @@ import AdminDepartment from '../components/AdminDepartments.vue'
 </script>
 
 <template>
-    
-    <div class="w-screen h-screen flex">
+    <div class="flex h-screen overflow-hidden">
         <SideBar />
-        <AdminDepartment />
+        <div class="flex-1">
+            <AdminDepartment />
+        </div>
     </div>
 </template>
