@@ -4,9 +4,10 @@ import AdminPriority from '../components/AdminPriority.vue';
 </script>
 
 <template>
-    
-    <div class="w-screen h-screen flex">
+    <div class="flex h-screen overflow-hidden">
         <SideBar />
-        <AdminPriority />
+        <div class="flex-1">
+            <AdminPriority />
+        </div>
     </div>
 </template>
