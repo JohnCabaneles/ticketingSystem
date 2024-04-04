@@ -63,7 +63,7 @@ departmentStore.getDepartment()
 
   const updateForm = () => {
     try {
-      departmentStore. updateDepartment(formUpdate.value.id, formUpdate.value).then(() => {
+      departmentStore.updateDepartment(formUpdate.value.id, formUpdate.value).then(() => {
         const Toast = configureSwal()
         Toast.fire({
           icon: 'success',
