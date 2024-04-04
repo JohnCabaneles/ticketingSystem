@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ArrowLeftStartOnRectangleIcon, ChevronRightIcon, Squares2X2Icon } from '@heroicons/vue/24/outline'
 import axios from 'axios'
    
    const signOut = async () => {
@@ -26,29 +27,28 @@ import axios from 'axios'
           <router-link
             to="/admin/dashboard"
             class="inline-flex relative items-center py-[10px] px-[10px] my-[10px] w-full text-sm font-medium rounded-md rounded-b-lg hover:bg-gray-300 hover:text-gray-600"
-            >Dashboard
+            ><Squares2X2Icon class="w-5 h-5 mr-2" />Dashboard
           </router-link>
           <router-link
             to="/admin/status"
             class="inline-flex relative items-center py-[10px] px-[10px] my-[10px] w-full text-sm font-medium rounded-md rounded-b-lg hover:bg-gray-300 hover:text-gray-600"
-            >Status
+            ><ChevronRightIcon class="w-5 h-5 mr-2" />Status
           </router-link>
           <router-link
             to="/admin/priority"
             class="inline-flex relative items-center py-[10px] px-[10px] my-[10px] w-full text-sm font-medium rounded-md rounded-b-lg hover:bg-gray-300 hover:text-gray-600"
-            >Priority
+            ><ChevronRightIcon class="w-5 h-5 mr-2" />Priority
           </router-link>
           <router-link
             to="/admin/department"
             class="inline-flex relative items-center py-[10px] px-[10px] my-[10px] w-full text-sm font-medium rounded-md rounded-b-lg hover:bg-gray-300 hover:text-gray-600"
-            >Departments
+            ><ChevronRightIcon class="w-5 h-5 mr-2" />Departments
           </router-link>
           <router-link
             to="/" custom v-slot="{href, navigate}" @click="signOut"> 
-            <li>
-              <a :href="href" @click="navigate" class="inline-flex relative items-center py-[10px] px-[10px] my-[10px] w-full text-sm font-medium rounded-md rounded-b-lg hover:bg-gray-300 hover:text-gray-600">Logout
+              <a :href="href" @click="navigate" class="inline-flex relative items-center py-[10px] px-[10px] my-[10px] w-full text-sm font-medium rounded-md rounded-b-lg hover:bg-gray-300 hover:text-gray-600">
+                <ArrowLeftStartOnRectangleIcon class="w-5 h-5 mr-2" />Logout
               </a>
-            </li>
           </router-link>
         </div>
       </div>

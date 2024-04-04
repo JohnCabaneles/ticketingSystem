@@ -108,7 +108,7 @@ const resetForm = () => {
         
         <div class="flex justify-center gap-5 my-24 mx-12 flex-col">
 
-          <form @submit.prevent="submitForm" class="w-3/6 p-5 border border-black shadow-lg rounded-xl">
+          <form @submit.prevent="submitForm" class="w-3/6 p-5 border shadow-lg rounded-xl">
             <div class="flex flex-wrap -mx-3 mb-6">
               <div class="w-full md:w-1/2 px-3">
                 <label
@@ -125,11 +125,11 @@ const resetForm = () => {
                 />
               </div>
             </div>
-            <button class="bg-blue-500 p-2 text-white rounded-sm hover:bg-blue-600" type="submit">Submit</button>
+            <button class="bg-blue-500 p-2 text-white rounded-lg hover:bg-blue-600 hover:shadow-lg" type="submit">Submit</button>
           </form>
   
           <div class="mr-80">
-          <div class="pt-2 p-5 border border-black rounded-xl shadow-lg">    
+          <div class="pt-2 p-5 border rounded-xl shadow-lg">    
             <div class="table w-full p-2">
                 <h1 class="pb-3 text-2xl">All Status.</h1>
                 <h2 class="font-semibold text-slate-800">Total Status <span class="text-slate-500 text-xl">{{ totalCount }}</span></h2>
@@ -166,7 +166,7 @@ const resetForm = () => {
                         <tr v-for="status in statuses" :key="status.id" class="bg-gray-100 text-center border-b text-sm text-gray-600">
                             <td class="p-2 border-r">{{ status.name }}</td>
                             <td>
-                              <button @click="openUpdateModal(status)" class="bg-blue-500 p-2 text-white hover:shadow-lg text-xs font-thin">Edit</button>
+                              <button @click="openUpdateModal(status)" class="bg-blue-500 hover:bg-blue-600 p-2 text-white rounded-lg mr-2 hover:shadow-lg text-xs font-thin">Edit</button>
                               <div v-if="showUpdateModal" class="fixed inset-0 flex items-center justify-center z-50">
                                   <div class="w-4/12">
                                       <div class="modal-content bg-white p-6 rounded-lg shadow-lg relative">
@@ -183,12 +183,12 @@ const resetForm = () => {
                                           <input v-model="formUpdate.name" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" id="name" type="text" placeholder="Jane">
                                         </div>
                                       </div>
-                                      <button class="bg-blue-500 p-2 text-white rounded-sm hover:bg-blue-600" type="submit">update</button>
+                                      <button class="bg-blue-500 p-2 text-white rounded-lg hover:bg-blue-600" type="submit">update</button>
                                     </form>  
                                   </div>
                                   </div>
                               </div>
-                              <button @click="deleteStatus(status.id)" class="bg-red-500 p-2 text-white hover:shadow-lg text-xs font-thin">Remove</button>
+                              <button @click="deleteStatus(status.id)" class="bg-red-500 hover:bg-red-600 p-2 text-white rounded-lg hover:shadow-lg text-xs font-thin">Remove</button>
                             </td>
                         </tr>
                     </tbody>
