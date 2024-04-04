@@ -4,10 +4,10 @@ import AdminStatus from '../components/AdminStatus.vue'
 </script>
 
 <template>
-    <div class="flex h-screen overflow-hidden">
-        <SideBar />
-        <div class="flex-1">
-            <AdminStatus />
-        </div>
+  <div class="flex h-screen overflow-hidden">
+    <SideBar />
+    <div class="flex-1">
+      <AdminStatus />
     </div>
+  </div>
 </template>
