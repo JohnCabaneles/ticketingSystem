@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('departments_id')->constrained('departments');
-            $table->foreignId('priority_id')->constrained('priority');
+            $table->foreignId('priorities_id')->constrained('priorities');
             $table->foreignId('statuses_id')->constrained('statuses')->nullable();
             $table->string('subject');
             $table->longText('message');
