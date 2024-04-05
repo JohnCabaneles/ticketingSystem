@@ -45,6 +45,11 @@ import axios from 'axios'
             ><ChevronRightIcon class="w-5 h-5 mr-2" />Departments
           </router-link>
           <router-link
+            to="/admin/roles"
+            class="inline-flex relative items-center py-[10px] px-[10px] my-[10px] w-full text-sm font-medium rounded-md rounded-b-lg hover:bg-gray-300 hover:text-gray-600"
+            ><ChevronRightIcon class="w-5 h-5 mr-2" />Roles
+          </router-link>
+          <router-link
             to="/" custom v-slot="{href, navigate}" @click="signOut"> 
               <a :href="href" @click="navigate" class="inline-flex relative items-center py-[10px] px-[10px] my-[10px] w-full text-sm font-medium rounded-md rounded-b-lg hover:bg-gray-300 hover:text-gray-600">
                 <ArrowLeftStartOnRectangleIcon class="w-5 h-5 mr-2" />Logout
