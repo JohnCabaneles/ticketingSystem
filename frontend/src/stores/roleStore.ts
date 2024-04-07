@@ -66,9 +66,9 @@ export const useRoleStore = defineStore('roleStore', {
             }
         },
 
-        async deleteStatus(id: number) {
+        async deleteRole(id: number) {
             try {
-                const response = await axios.delete(`/api/role/${id}`)
+                const response = await axios.delete(`/api/admin/role/${id}`)
                 console.log('Role deleted successfully', response)
                 this.getRoles()
             } catch (error) {

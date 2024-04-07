@@ -4,8 +4,10 @@ import SideBar from '@/components/SideBar.vue'
 </script>
 
 <template>
-  <div class="w-screen h-screen flex">
+  <div class="flex h-screen overflow-hidden">
     <SideBar />
-    <AdminDashboards />
+    <div class="flex-1">
+        <AdminDashboards />
+    </div>
   </div>
 </template>
