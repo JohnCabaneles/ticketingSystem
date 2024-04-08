@@ -1,17 +1,21 @@
 <script setup lang="ts">
-import { ArrowLeftStartOnRectangleIcon, ChevronRightIcon, Squares2X2Icon } from '@heroicons/vue/24/outline'
+import {
+  ArrowLeftStartOnRectangleIcon,
+  ChevronRightIcon,
+  Squares2X2Icon
+} from '@heroicons/vue/24/outline'
 import axios from 'axios'
-   
-   const signOut = async () => {
-     try {
-       await axios.post('/logout', null, {
-         withCredentials: true,
-       })
-     } catch (error) {
-       console.error(error)
-     }
-   }
-   </script>
+
+const signOut = async () => {
+  try {
+    await axios.post('/logout', null, {
+      withCredentials: true
+    })
+  } catch (error) {
+    console.error(error)
+  }
+}
+</script>
 
 <template>
   <!-- Side Bar -->
