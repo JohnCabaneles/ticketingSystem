@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\StatusController;
 use App\Http\Controllers\Admin\PriorityController;
 use App\Http\Controllers\Admin\DepartmentController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +28,5 @@ Route::prefix('admin')->group(function() {
     Route::apiResource('/role', RoleController::class);
     Route::apiResource('/department', DepartmentController::class);
     Route::apiResource('/priority',PriorityController::class);
+    Route::apiResource('/total/user', RegisteredUserController::class);
 });

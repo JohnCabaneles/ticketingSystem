@@ -25,7 +25,7 @@ export const useAddUserStore = defineStore('addUserStore', {
     async getAddUser() {
       this.loading = true
       try {
-        const response = await axios.get('api/admin/add/user')
+        const response = await axios.get('/api/admin/total/user')
         this.addUsers = response.data
         this.loading = false
       } catch (error) {
