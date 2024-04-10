@@ -4,9 +4,9 @@ import axios from 'axios'
 export interface AddUser {
   id: number
   name: string
-  role: string
-  department: string
-  number: number
+  roles_id: string
+  departments_id: string
+  contact_number: string
   email: string
   password: string
 }
@@ -34,7 +34,13 @@ export const useAddUserStore = defineStore('addUserStore', {
     },
     async addUser(addUser: AddUser) {
       try {
-        const response = await axios.post('/api/admin/add/user', { name: addUser.name })
+        const response = await axios.post('/register', {
+          name: addUser.name,
+          roles_id: addUser.roles_id,
+          departments_id: addUser.departments_id,
+          contact_number: addUser.contact_number,
+          email: addUser.email
+        })
         this.addUsers.push(response.data)
         console.log('User added successfully', response.data)
       } catch (error) {
@@ -50,7 +56,7 @@ export const useAddUserStore = defineStore('addUserStore', {
       }
 
       try {
-        const response = await axios.put(`/api/admin/add/user/${id}`, updateData)
+        const response = await axios.put(`/api/admin/total/user/${id}`, updateData)
 
         const updatedIndex = this.addUsers.findIndex((addUsers) => addUsers.id === id)
         this.getAddUser()
@@ -69,7 +75,7 @@ export const useAddUserStore = defineStore('addUserStore', {
 
     async deleteAddUser(id: number) {
       try {
-        const response = await axios.delete(`/api/admin/add/user/${id}`)
+        const response = await axios.delete(`/api/admin/total/user/${id}`)
         console.log('User deleted successfully', response)
         this.getAddUser()
       } catch (error) {
