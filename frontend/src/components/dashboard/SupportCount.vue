@@ -1,5 +1,13 @@
 <script setup lang="ts">
 import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/outline'
+import { useDashboardStore } from '@/stores/DashboardStore';
+import { storeToRefs } from 'pinia'
+
+const dashboardStore = useDashboardStore()
+const { totalSupportCount } = storeToRefs(dashboardStore)
+
+dashboardStore.getTotalSupport()
+
 </script>
 
 <template>
@@ -12,7 +20,7 @@ import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/outline'
                   </div>
                   <div class="flex justify-between items-start">
                     <h2 class="text-xl font-bold text-slate-800 mb-2">Support</h2>
-                    <div class="text-xl font-bold text-slate-800 mr-2">0</div>
+                    <div class="text-xl font-bold text-slate-800 mr-2">{{ totalSupportCount }}</div>
                   </div>
                   <hr class="h-px bg-gray-500 w-44">
             </div>
