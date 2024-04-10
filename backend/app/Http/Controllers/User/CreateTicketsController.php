@@ -20,4 +20,18 @@ class CreateTicketsController extends Controller
         return response()->json($ticket);
     }
 
+    public function store(Request $request) {
+        $formFields = $request->validate([
+            'name' => ['required','string','max:25'],
+            'subject' => ['required','string','max:100'],
+            'message' => ['required','string','max:255']
+        ]);
+ 
+        $formFields['user_id'] = auth()->id();
+
+        $ticket = CreateTickets::create($formFields);
+
+        return response()->json($ticket, 201);
+    }
+
 } 

@@ -16,10 +16,9 @@ export const useLoginStore = defineStore('loginStore', {
       try {
         await axios.get('/sanctum/csrf-cookie')
       } catch (error) {
-        console.error('Error getting token', error)
+        console.error('Error getting token')
       }
     },
-
     async handleLogin(options: { email: string; password: string; onSuccess?: () => void }) {
       try {
         await this.getToken()
@@ -31,11 +30,10 @@ export const useLoginStore = defineStore('loginStore', {
         if (options.onSuccess) {
           options.onSuccess()
         }
-
         console.log('success', response.data)
-        router.push('/admin/dashboard')
+        router.push('/user/dashboard')
       } catch (error) {
-        console.error('Invalid credentials', error)
+        console.error('Invalid Credentials', error)
       }
     }
   }
