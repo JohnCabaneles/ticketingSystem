@@ -10,9 +10,9 @@ const showUpdateModal = ref(false)
 const form = ref<AddUser>({
   id: 0,
   name: '',
-  role: '',
-  department: '',
-  number: 0,
+  roles_id: '',
+  departments_id: '',
+  contact_number: '',
   email: '',
   password: ''
 })
@@ -20,9 +20,9 @@ const form = ref<AddUser>({
 const formUpdate = ref<AddUser>({
   id: 0,
   name: '',
-  role: '',
-  department: '',
-  number: 0,
+  roles_id: '',
+  departments_id: '',
+  contact_number: '',
   email: '',
   password: ''
 })
@@ -117,7 +117,7 @@ const deleteAddUser = (id: number) => {
     <div class="h-[calc(100vh-50px)]">
       <div class="flex justify-center gap-5 my-24 mx-12 flex-col">
         <form @submit.prevent="submitForm" class="w-3/6 p-5 border shadow-lg rounded-xl">
-          <div class="flex flex-wrap -mx-3 mb-6">
+          <div class="flex flex-wrap mx-3 mb-6">
             <div class="w-full md:w-1/2 px-3">
               <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="name">
                 Name
@@ -132,7 +132,7 @@ const deleteAddUser = (id: number) => {
                 Role
               </label>
               <input
-                v-model="form.role"
+                v-model="form.roles_id"
                 class="text-black border border-gray-400 rounded py-1 px-2"
                 id="role"
                 type="text"
@@ -141,7 +141,7 @@ const deleteAddUser = (id: number) => {
                 Department
               </label>
               <input
-                v-model="form.department"
+                v-model="form.departments_id"
                 class="text-black border border-gray-400 rounded py-1 px-2"
                 id="department"
                 type="text"
@@ -152,7 +152,7 @@ const deleteAddUser = (id: number) => {
                 Contact Number
               </label>
               <input
-                v-model="form.number"
+                v-model="form.contact_number"
                 class="text-black border border-gray-400 rounded py-1 px-2"
                 id="number"
                 type="text"
@@ -165,15 +165,6 @@ const deleteAddUser = (id: number) => {
                 class="text-black border border-gray-400 rounded py-1 px-2"
                 id="email"
                 type="email"
-              />
-              <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="password">
-                Password
-              </label>
-              <input
-                v-model="form.password"
-                class="text-black border border-gray-400 rounded py-1 px-2"
-                id="password"
-                type="password"
               />
             </div>
           </div>
@@ -188,9 +179,9 @@ const deleteAddUser = (id: number) => {
         <div class="mr-80">
           <div class="pt-2 p-5 border rounded-xl shadow-lg">
             <div class="table w-full p-2">
-              <h1 class="pb-3 text-2xl">All Priority.</h1>
+              <h1 class="pb-3 text-2xl">All Users.</h1>
               <h2 class="font-semibold text-slate-800">
-                Total Priority <span class="text-slate-500 text-xl">{{ totalCount }}</span>
+                Total Users <span class="text-slate-500 text-xl">{{ totalCount }}</span>
               </h2>
               <table class="w-full border">
                 <thead>
@@ -270,7 +261,7 @@ const deleteAddUser = (id: number) => {
                         <div class="w-4/12">
                           <div class="modal-content bg-white p-6 rounded-lg shadow-lg relative">
                             <div class="mb-6">
-                              <h1 class="text-2xl">Fill up the form to edit priority.</h1>
+                              <h1 class="text-2xl">Fill up the form to edit users.</h1>
                             </div>
                             <button
                               @click="showUpdateModal = false"
@@ -292,6 +283,71 @@ const deleteAddUser = (id: number) => {
                                     class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
                                     id="name"
                                     type="text"
+                                    placeholder="Jane"
+                                  />
+                                  <label
+                                    class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                    for="roles"
+                                  >
+                                    Role
+                                  </label>
+                                  <input
+                                    v-model="formUpdate.roles_id"
+                                    class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
+                                    id="roles"
+                                    type="text"
+                                    placeholder="Jane"
+                                  />
+                                  <label
+                                    class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                    for="department"
+                                  >
+                                    Department
+                                  </label>
+                                  <input
+                                    v-model="formUpdate.departments_id"
+                                    class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
+                                    id="department"
+                                    type="text"
+                                    placeholder="Jane"
+                                  />
+                                  <label
+                                    class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                    for="contact_number"
+                                  >
+                                    Contact Number
+                                  </label>
+                                  <input
+                                    v-model="formUpdate.contact_number"
+                                    class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
+                                    id="contact_number"
+                                    type="text"
+                                    placeholder="Jane"
+                                  />
+                                  <label
+                                    class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                    for="email"
+                                  >
+                                    Email
+                                  </label>
+                                  <input
+                                    v-model="formUpdate.email"
+                                    class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
+                                    id="email"
+                                    type="text"
+                                    placeholder="Jane"
+                                  />
+                                  <label
+                                    class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                    for="password"
+                                  >
+                                    Password
+                                  </label>
+                                  <input
+                                    v-model="formUpdate.password"
+                                    class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
+                                    id="password"
+                                    type="password"
                                     placeholder="Jane"
                                   />
                                 </div>
