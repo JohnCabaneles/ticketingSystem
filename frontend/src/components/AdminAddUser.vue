@@ -29,6 +29,10 @@ const formUpdate = ref<AddUser>({
 
 const resetForm = () => {
   form.value.name = ''
+  form.value.roles_id = ''
+  form.value.departments_id = ''
+  form.value.contact_number = ''
+  form.value.email = ''
 }
 
 addUserStore.getAddUser()
