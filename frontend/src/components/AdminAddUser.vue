@@ -1,27 +1,41 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { usePriorityStore, type Priority } from '@/stores/priorityStore'
+import { useAddUserStore, type AddUser } from '@/stores/addUserStore'
 import { storeToRefs } from 'pinia'
 import Swal from 'sweetalert2'
 
-const priorityStore = usePriorityStore()
-const { priorities, totalCount, loading } = storeToRefs(priorityStore)
+const addUserStore = useAddUserStore()
+const { addUsers, totalCount, loading } = storeToRefs(addUserStore)
 const showUpdateModal = ref(false)
-const form = ref<Priority>({
+const form = ref<AddUser>({
   id: 0,
-  name: ''
+  name: '',
+  roles_id: '',
+  departments_id: '',
+  contact_number: '',
+  email: '',
+  password: ''
 })
 
-const formUpdate = ref<Priority>({
+const formUpdate = ref<AddUser>({
   id: 0,
-  name: ''
+  name: '',
+  roles_id: '',
+  departments_id: '',
+  contact_number: '',
+  email: '',
+  password: ''
 })
 
 const resetForm = () => {
   form.value.name = ''
+  form.value.roles_id = ''
+  form.value.departments_id = ''
+  form.value.contact_number = ''
+  form.value.email = ''
 }
 
-priorityStore.getPriority()
+addUserStore.getAddUser()
 
 const configureSwal = () => {
   return Swal.mixin({
@@ -39,11 +53,11 @@ const configureSwal = () => {
 
 const submitForm = () => {
   if (form.value.name.length > 0) {
-    priorityStore.addPriority(form.value).then(() => {
+    addUserStore.addUser(form.value).then(() => {
       const Toast = configureSwal()
       Toast.fire({
         icon: 'success',
-        title: 'Priority added successfully'
+        title: 'User added successfully'
       })
     })
     resetForm()
@@ -51,51 +65,51 @@ const submitForm = () => {
     const Toast = configureSwal()
     Toast.fire({
       icon: 'error',
-      title: 'Adding priority failed'
+      title: 'Error Adding User'
     })
   }
 }
 
-const openUpdateModal = (priority: Priority) => {
-  formUpdate.value = { ...priority }
+const openUpdateModal = (addUser: AddUser) => {
+  formUpdate.value = { ...addUser }
   showUpdateModal.value = true
 }
 
 const updateForm = () => {
   try {
-    priorityStore.updatePriority(formUpdate.value.id, formUpdate.value).then(() => {
+    addUserStore.updateAddUser(formUpdate.value.id, formUpdate.value).then(() => {
       const Toast = configureSwal()
       Toast.fire({
         icon: 'success',
-        title: 'Priority updated successfully'
+        title: 'User updated succesfully'
       })
     })
     showUpdateModal.value = false
   } catch (error) {
-    console.error('Error updating priority', error)
+    console.error('Error updating user', error)
     const Toast = configureSwal()
     Toast.fire({
       icon: 'error',
-      title: 'Error updating priority'
+      title: 'Error updating user'
     })
   }
 }
 
-const deletePriority = (id: number) => {
+const deleteAddUser = (id: number) => {
   try {
-    priorityStore.deletePriority(id).then(() => {
+    addUserStore.deleteAddUser(id).then(() => {
       const Toast = configureSwal()
       Toast.fire({
         icon: 'success',
-        title: 'Priority deleted successfully'
+        title: 'User deleted successfully'
       })
     })
   } catch (error) {
-    console.error('Error deleting priority', error)
+    console.error('Error deleting User', error)
     const Toast = configureSwal()
     Toast.fire({
       icon: 'error',
-      title: 'Error deleting priority'
+      title: 'Error deleting User'
     })
   }
 }
@@ -107,16 +121,54 @@ const deletePriority = (id: number) => {
     <div class="h-[calc(100vh-50px)]">
       <div class="flex justify-center gap-5 my-24 mx-12 flex-col">
         <form @submit.prevent="submitForm" class="w-3/6 p-5 border shadow-lg rounded-xl">
-          <div class="flex flex-wrap -mx-3 mb-6">
+          <div class="flex flex-wrap mx-3 mb-6">
             <div class="w-full md:w-1/2 px-3">
               <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="name">
-                Create Priority
+                Name
               </label>
               <input
                 v-model="form.name"
-                class="text-black border border-gray-400 rounded py-3 px-4"
+                class="text-black border border-gray-400 rounded py-1 px-2"
                 id="name"
                 type="text"
+              />
+              <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="role">
+                Role
+              </label>
+              <input
+                v-model="form.roles_id"
+                class="text-black border border-gray-400 rounded py-1 px-2"
+                id="role"
+                type="text"
+              />
+              <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="departments_id">
+                Department
+              </label>
+              <input
+                v-model="form.departments_id"
+                class="text-black border border-gray-400 rounded py-1 px-2"
+                id="departments_id"
+                type="text"
+              />
+            </div>
+            <div class="w-full md:w-1/2 px-3">
+              <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="number">
+                Contact Number
+              </label>
+              <input
+                v-model="form.contact_number"
+                class="text-black border border-gray-400 rounded py-1 px-2"
+                id="number"
+                type="text"
+              />
+              <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="email">
+                Email
+              </label>
+              <input
+                v-model="form.email"
+                class="text-black border border-gray-400 rounded py-1 px-2"
+                id="email"
+                type="email"
               />
             </div>
           </div>
@@ -131,9 +183,9 @@ const deletePriority = (id: number) => {
         <div class="mr-80">
           <div class="pt-2 p-5 border rounded-xl shadow-lg">
             <div class="table w-full p-2">
-              <h1 class="pb-3 text-2xl">All Priority.</h1>
+              <h1 class="pb-3 text-2xl">All Users.</h1>
               <h2 class="font-semibold text-slate-800">
-                Total Priority <span class="text-slate-500 text-xl">{{ totalCount }}</span>
+                Total Users <span class="text-slate-500 text-xl">{{ totalCount }}</span>
               </h2>
               <table class="w-full border">
                 <thead>
@@ -194,14 +246,14 @@ const deletePriority = (id: number) => {
                 </div>
                 <tbody v-else>
                   <tr
-                    v-for="priority in priorities"
-                    :key="priority.id"
+                    v-for="addUser in addUsers"
+                    :key="addUser.id"
                     class="bg-gray-100 text-center border-b text-sm text-gray-600"
                   >
-                    <td class="p-2 border-r">{{ priority.name }}</td>
+                    <td class="p-2 border-r">{{ addUser.name }}</td>
                     <td>
                       <button
-                        @click="openUpdateModal(priority)"
+                        @click="openUpdateModal(addUser)"
                         class="bg-blue-500 hover:bg-blue-600 p-2 text-white rounded-lg mr-2 hover:shadow-lg text-xs font-thin"
                       >
                         Edit
@@ -213,7 +265,7 @@ const deletePriority = (id: number) => {
                         <div class="w-4/12">
                           <div class="modal-content bg-white p-6 rounded-lg shadow-lg relative">
                             <div class="mb-6">
-                              <h1 class="text-2xl">Fill up the form to edit priority.</h1>
+                              <h1 class="text-2xl">Fill up the form to edit users.</h1>
                             </div>
                             <button
                               @click="showUpdateModal = false"
@@ -237,6 +289,71 @@ const deletePriority = (id: number) => {
                                     type="text"
                                     placeholder="Jane"
                                   />
+                                  <label
+                                    class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                    for="roles"
+                                  >
+                                    Role
+                                  </label>
+                                  <input
+                                    v-model="formUpdate.roles_id"
+                                    class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
+                                    id="roles"
+                                    type="text"
+                                    placeholder="Jane"
+                                  />
+                                  <label
+                                    class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                    for="department"
+                                  >
+                                    Department
+                                  </label>
+                                  <input
+                                    v-model="formUpdate.departments_id"
+                                    class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
+                                    id="department"
+                                    type="text"
+                                    placeholder="Jane"
+                                  />
+                                  <label
+                                    class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                    for="contact_number"
+                                  >
+                                    Contact Number
+                                  </label>
+                                  <input
+                                    v-model="formUpdate.contact_number"
+                                    class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
+                                    id="contact_number"
+                                    type="text"
+                                    placeholder="Jane"
+                                  />
+                                  <label
+                                    class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                    for="email"
+                                  >
+                                    Email
+                                  </label>
+                                  <input
+                                    v-model="formUpdate.email"
+                                    class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
+                                    id="email"
+                                    type="text"
+                                    placeholder="Jane"
+                                  />
+                                  <label
+                                    class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                    for="password"
+                                  >
+                                    Password
+                                  </label>
+                                  <input
+                                    v-model="formUpdate.password"
+                                    class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
+                                    id="password"
+                                    type="password"
+                                    placeholder="Jane"
+                                  />
                                 </div>
                               </div>
                               <button
@@ -250,7 +367,7 @@ const deletePriority = (id: number) => {
                         </div>
                       </div>
                       <button
-                        @click="deletePriority(priority.id)"
+                        @click="deleteAddUser(addUser.id)"
                         class="bg-red-500 hover:bg-red-600 p-2 text-white rounded-lg hover:shadow-lg text-xs font-thin"
                       >
                         Remove

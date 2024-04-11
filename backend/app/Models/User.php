@@ -3,8 +3,10 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Admin\Role;
 use App\Models\Admin\Status;
 use App\Models\Admin\Priority;
+use App\Models\Admin\Department;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -54,5 +56,13 @@ class User extends Authenticatable
 
     public function priority() {
         return $this->hasOne(Priority::class, 'user_id');
+    }
+
+    public function department() {
+        return $this->hasOne(Department::class, 'user_id');
+    }
+
+    public function role() {
+        return $this->hasOne(Role::class, 'user_id');
     }
 }
