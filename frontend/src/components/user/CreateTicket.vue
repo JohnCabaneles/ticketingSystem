@@ -1,18 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { usePriorityStore, type Priority } from '@/stores/priorityStore'
-import { storeToRefs } from 'pinia'
 import Swal from 'sweetalert2'
 
 const priorityStore = usePriorityStore()
-const { priorities, totalCount, loading } = storeToRefs(priorityStore)
-const showUpdateModal = ref(false)
 const form = ref<Priority>({
-  id: 0,
-  name: ''
-})
-
-const formUpdate = ref<Priority>({
   id: 0,
   name: ''
 })
@@ -52,50 +44,6 @@ const submitForm = () => {
     Toast.fire({
       icon: 'error',
       title: 'Adding priority failed'
-    })
-  }
-}
-
-const openUpdateModal = (priority: Priority) => {
-  formUpdate.value = { ...priority }
-  showUpdateModal.value = true
-}
-
-const updateForm = () => {
-  try {
-    priorityStore.updatePriority(formUpdate.value.id, formUpdate.value).then(() => {
-      const Toast = configureSwal()
-      Toast.fire({
-        icon: 'success',
-        title: 'Priority updated successfully'
-      })
-    })
-    showUpdateModal.value = false
-  } catch (error) {
-    console.error('Error updating priority', error)
-    const Toast = configureSwal()
-    Toast.fire({
-      icon: 'error',
-      title: 'Error updating priority'
-    })
-  }
-}
-
-const deletePriority = (id: number) => {
-  try {
-    priorityStore.deletePriority(id).then(() => {
-      const Toast = configureSwal()
-      Toast.fire({
-        icon: 'success',
-        title: 'Priority deleted successfully'
-      })
-    })
-  } catch (error) {
-    console.error('Error deleting priority', error)
-    const Toast = configureSwal()
-    Toast.fire({
-      icon: 'error',
-      title: 'Error deleting priority'
     })
   }
 }
