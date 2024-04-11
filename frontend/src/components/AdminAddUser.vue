@@ -137,13 +137,13 @@ const deleteAddUser = (id: number) => {
                 id="role"
                 type="text"
               />
-              <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="department">
+              <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="departments_id">
                 Department
               </label>
               <input
                 v-model="form.departments_id"
                 class="text-black border border-gray-400 rounded py-1 px-2"
-                id="department"
+                id="departments_id"
                 type="text"
               />
             </div>
