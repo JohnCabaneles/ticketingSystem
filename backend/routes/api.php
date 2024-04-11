@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Http\Request;
 use App\Models\Users\CreateTickets;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\StatusController;
 use App\Http\Controllers\Admin\PriorityController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Users\CreateTicketsController;
@@ -38,4 +38,5 @@ Route::prefix('admin')->group(function() {
 
 Route::prefix('user')->group(function() {
     Route::apiResource('/create/ticket', CreateTicketsController::class);
+    Route::apiResource('/total/ticket',CreateTicketsController::class);
 });
