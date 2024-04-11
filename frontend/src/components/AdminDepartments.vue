@@ -63,7 +63,7 @@ departmentStore.getDepartment()
 
   const updateForm = () => {
     try {
-      departmentStore. updateDepartment(formUpdate.value.id, formUpdate.value).then(() => {
+      departmentStore.updateDepartment(formUpdate.value.id, formUpdate.value).then(() => {
         const Toast = configureSwal()
         Toast.fire({
           icon: 'success',
@@ -108,7 +108,7 @@ departmentStore.getDepartment()
         
         <div class="flex justify-center gap-5 my-24 mx-12 flex-col">
 
-          <form @submit.prevent="submitForm" class="w-3/6 p-5 border border-black shadow-lg rounded-xl">
+          <form @submit.prevent="submitForm" class="w-3/6 p-5 border shadow-lg rounded-xl">
             <div class="flex flex-wrap -mx-3 mb-6">
               <div class="w-full md:w-1/2 px-3">
                 <label
@@ -125,11 +125,11 @@ departmentStore.getDepartment()
                 />
               </div>
             </div>
-            <button class="bg-blue-500 p-2 text-white rounded-sm hover:bg-blue-600" type="submit">Submit</button>
+            <button class="bg-blue-500 p-2 text-white rounded-lg hover:bg-blue-600 hover:shadow-lg" type="submit">Submit</button>
           </form>
   
           <div class="mr-80">
-          <div class="pt-2 p-5 border border-black rounded-xl shadow-lg">    
+          <div class="pt-2 p-5 border rounded-xl shadow-lg">    
             <div class="table w-full p-2">
                 <h1 class="pb-3 text-2xl">All Department.</h1>
                 <h2 class="font-semibold text-slate-800">Total Department <span class="text-slate-500 text-xl">{{ totalCount }}</span></h2>
@@ -166,7 +166,7 @@ departmentStore.getDepartment()
                         <tr v-for="department in departments" :key="department.id" class="bg-gray-100 text-center border-b text-sm text-gray-600">
                             <td class="p-2 border-r">{{ department.name }}</td>
                             <td>
-                              <button @click="openUpdateModal(department)" class="bg-blue-500 p-2 text-white hover:shadow-lg text-xs font-thin">Edit</button>
+                              <button @click="openUpdateModal(department)" class="bg-blue-500 hover:bg-blue-600 rounded-lg mr-2 w-12 p-2 text-white hover:shadow-lg text-xs font-thin">Edit</button>
                               <div v-if="showUpdateModal" class="fixed inset-0 flex items-center justify-center z-50">
                                   <div class="w-4/12">
                                       <div class="modal-content bg-white p-6 rounded-lg shadow-lg relative">
@@ -175,20 +175,18 @@ departmentStore.getDepartment()
                                     </div>
                                     <button @click="showUpdateModal = false" class="close-button absolute top-0 right-0 p-2 text-black rounded-sm px-3 py-1 focus:outline-none text-2xl">×</button>
                                     <form @submit.prevent="updateForm">
-                                      <div class="-mx-3 md:flex mb-2">
                                         <div class="md:w-1/2 px-3 mb-6 md:mb-0">
                                           <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="name">
                                             Name
                                           </label>
-                                          <input v-model="formUpdate.name" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" id="name" type="text" placeholder="Jane">
+                                          <input v-model="formUpdate.name" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" id="name" type="text">
                                         </div>
-                                      </div>
-                                      <button class="bg-blue-500 p-2 text-white rounded-sm hover:bg-blue-600" type="submit">update</button>
+                                      <button class="bg-blue-500 p-2 text-white rounded-lg hover:bg-blue-600" type="submit">update</button>
                                     </form>  
                                   </div>
                                   </div>
                               </div>
-                              <button @click="deleteDepartment(department.id)" class="bg-red-500 p-2 text-white hover:shadow-lg text-xs font-thin">Remove</button>
+                              <button @click="deleteDepartment(department.id)" class="bg-red-500 hover:bg-red-600 rounded-lg p-2 text-white hover:shadow-lg text-xs font-thin">Remove</button>
                             </td>
                         </tr>
                     </tbody>

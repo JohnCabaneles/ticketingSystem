@@ -68,7 +68,7 @@ export const useDepartmentStore = defineStore('departmentStore', {
 
         async deleteDepartment(id: number) {
             try {
-                const response = await axios.delete(`/api/admin/deparment/${id}`)
+                const response = await axios.delete(`/api/admin/department/${id}`)
                 console.log('Department deleted successfully', response.data)
                 this.getDepartment()
             } catch (error) {
