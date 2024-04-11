@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import axios from 'axios'
 
 export interface CreateTicket {
-  name: string
+  id: number
   subject: string
   message: string
 }
@@ -32,7 +32,6 @@ export const useCreateTicketStore = defineStore('createTicketStore', {
     async addTickets(createTicket: CreateTicket) {
       try {
         const response = await axios.post('/api/user/create/ticket', {
-          name: createTicket.name,
           subject: createTicket.subject,
           message: createTicket.message
         })
