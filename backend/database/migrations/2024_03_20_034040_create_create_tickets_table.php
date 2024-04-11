@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('create_tickets', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('departments_id')->nullable()->constrained('departments');
+            $table->foreignId('priorities_id')->nullable()->constrained('priorities');
+            $table->foreignId('statuses_id')->nullable()->constrained('statuses');
+            $table->string('subject');
+            $table->longText('message');
             $table->timestamps();
         });
     }
