@@ -25,9 +25,7 @@ Route::middleware('auth:sanctum')->match(['get'], '/dashboard', function (Reques
     return response()->json(['user' => $userData]);
 });
 
-Route::post('/register', [RegisteredUserController::class, 'store'])
-                ->middleware('guest')
-                ->name('register');
+Route::post('/register', [RegisteredUserController::class, 'store']);
 
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])
                 ->middleware('guest')

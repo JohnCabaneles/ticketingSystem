@@ -1,27 +1,27 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { usePriorityStore, type Priority } from '@/stores/priorityStore'
+import { useRoleStore, type Role} from '@/stores/roleStore'
 import { storeToRefs } from 'pinia'
 import Swal from 'sweetalert2'
 
-const priorityStore = usePriorityStore()
-const { priorities, totalCount, loading } = storeToRefs(priorityStore)
+const roleStore = useRoleStore()
+const { roles, totalCount, loading } = storeToRefs(roleStore)
 const showUpdateModal = ref(false)
-const form = ref<Priority>({
-  id: 0,
-  name: ''
+const form = ref<Role>({
+    id: 0,
+    name: '',
 })
 
-const formUpdate = ref<Priority>({
-  id: 0,
-  name: ''
+const formUpdate = ref<Role>({
+    id: 0,
+    name: '',
 })
 
 const resetForm = () => {
-  form.value.name = ''
+    form.value.name = ''
 }
 
-priorityStore.getPriority()
+roleStore.getRoles()
 
 const configureSwal = () => {
   return Swal.mixin({
@@ -38,70 +38,71 @@ const configureSwal = () => {
 }
 
 const submitForm = () => {
-  if (form.value.name.length > 0) {
-    priorityStore.addPriority(form.value).then(() => {
-      const Toast = configureSwal()
-      Toast.fire({
-        icon: 'success',
-        title: 'Priority added successfully'
-      })
-    })
-    resetForm()
-  } else {
-    const Toast = configureSwal()
-    Toast.fire({
-      icon: 'error',
-      title: 'Adding priority failed'
-    })
-  }
+    if (form.value.name.length > 0) {
+        roleStore.addRole(form.value).then(() => {
+            const Toast = configureSwal()
+            Toast.fire({
+                icon: 'success',
+                title: 'Role added successfully'
+            })
+        })
+        resetForm()
+    }   else {
+        const Toast = configureSwal()
+        Toast.fire({
+            icon: 'error',
+            title: 'Adding role failed'
+        })
+    }
 }
 
-const openUpdateModal = (priority: Priority) => {
-  formUpdate.value = { ...priority }
-  showUpdateModal.value = true
+const openUpdateModal = (role: Role) => {
+    formUpdate.value = { ...role }
+    showUpdateModal.value = true
 }
 
 const updateForm = () => {
-  try {
-    priorityStore.updatePriority(formUpdate.value.id, formUpdate.value).then(() => {
-      const Toast = configureSwal()
-      Toast.fire({
-        icon: 'success',
-        title: 'Priority updated successfully'
-      })
-    })
-    showUpdateModal.value = false
-  } catch (error) {
-    console.error('Error updating priority', error)
-    const Toast = configureSwal()
-    Toast.fire({
-      icon: 'error',
-      title: 'Error updating priority'
-    })
-  }
+    try {
+        roleStore.updateRole(formUpdate.value.id, formUpdate.value).then(() => {
+            const Toast = configureSwal()
+            Toast.fire({
+                icon: 'success',
+                title: 'Role updated successfully'
+            })
+        })
+        showUpdateModal.value = false
+    } catch (error) {
+        console.error('Error updating role', error)
+        const Toast = configureSwal()
+        Toast.fire({
+            icon: 'error',
+            title: 'Error updating role'
+        })
+    }
 }
 
-const deletePriority = (id: number) => {
-  try {
-    priorityStore.deletePriority(id).then(() => {
-      const Toast = configureSwal()
-      Toast.fire({
-        icon: 'success',
-        title: 'Priority deleted successfully'
-      })
-    })
-  } catch (error) {
-    console.error('Error deleting priority', error)
-    const Toast = configureSwal()
-    Toast.fire({
-      icon: 'error',
-      title: 'Error deleting priority'
-    })
-  }
+const deleteRole = (id: number) => {
+    try {
+        roleStore.deleteRole(id).then(() => {
+            const Toast = configureSwal()
+            Toast.fire({
+                icon: 'success',
+                title: 'Role deleted successfully'
+            })
+        })
+    } catch (error) {
+        console.error('Error deleting role', error)
+        const Toast = configureSwal()
+        Toast.fire({
+            icon: 'error',
+            title: 'Error deleting role'
+        })
+    }
 }
 </script>
+
 <template>
-  <!-- Main -->
+      <!-- Main -->
   <div class="w-full h-full">
     <div class="h-[50px] bg-gray-900 text-white">Header</div>
     <div class="h-[calc(100vh-50px)]">
@@ -110,7 +111,7 @@ const deletePriority = (id: number) => {
           <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full md:w-1/2 px-3">
               <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="name">
-                Create Priority
+                Create Role
               </label>
               <input
                 v-model="form.name"
@@ -131,9 +132,9 @@ const deletePriority = (id: number) => {
         <div class="mr-80">
           <div class="pt-2 p-5 border rounded-xl shadow-lg">
             <div class="table w-full p-2">
-              <h1 class="pb-3 text-2xl">All Priority.</h1>
+              <h1 class="pb-3 text-2xl">All Role.</h1>
               <h2 class="font-semibold text-slate-800">
-                Total Priority <span class="text-slate-500 text-xl">{{ totalCount }}</span>
+                Total Role <span class="text-slate-500 text-xl">{{ totalCount }}</span>
               </h2>
               <table class="w-full border">
                 <thead>
@@ -194,14 +195,14 @@ const deletePriority = (id: number) => {
                 </div>
                 <tbody v-else>
                   <tr
-                    v-for="priority in priorities"
-                    :key="priority.id"
+                    v-for="role in roles"
+                    :key="role.id"
                     class="bg-gray-100 text-center border-b text-sm text-gray-600"
                   >
-                    <td class="p-2 border-r">{{ priority.name }}</td>
+                    <td class="p-2 border-r">{{ role.name }}</td>
                     <td>
                       <button
-                        @click="openUpdateModal(priority)"
+                        @click="openUpdateModal(role)"
                         class="bg-blue-500 hover:bg-blue-600 p-2 text-white rounded-lg mr-2 hover:shadow-lg text-xs font-thin"
                       >
                         Edit
@@ -213,7 +214,7 @@ const deletePriority = (id: number) => {
                         <div class="w-4/12">
                           <div class="modal-content bg-white p-6 rounded-lg shadow-lg relative">
                             <div class="mb-6">
-                              <h1 class="text-2xl">Fill up the form to edit priority.</h1>
+                              <h1 class="text-2xl">Fill up the form to edit Role.</h1>
                             </div>
                             <button
                               @click="showUpdateModal = false"
@@ -250,7 +251,7 @@ const deletePriority = (id: number) => {
                         </div>
                       </div>
                       <button
-                        @click="deletePriority(priority.id)"
+                        @click="deleteRole(role.id)"
                         class="bg-red-500 hover:bg-red-600 p-2 text-white rounded-lg hover:shadow-lg text-xs font-thin"
                       >
                         Remove

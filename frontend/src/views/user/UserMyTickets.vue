@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import SideBar from '../components/SideBar.vue'
-import AdminPriority from '../components/AdminPriority.vue'
+import SideBar from '@/components/user/SideBar.vue'
+import MyTicket from '@/components/user/MyTickets.vue'
 </script>
 
 <template>
   <div class="flex h-screen overflow-hidden">
     <SideBar />
     <div class="flex-1">
-      <AdminPriority />
+      <MyTicket />
     </div>
   </div>
 </template>
