@@ -38,4 +38,5 @@ Route::prefix('admin')->group(function() {
 
 Route::prefix('user')->group(function() {
     Route::apiResource('/create/ticket', CreateTicketsController::class);
+    Route::apiResource('/total/ticket',CreateTicketsController::class);
 });

@@ -1,19 +1,21 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { usePriorityStore, type Priority } from '@/stores/priorityStore'
+import { useCreateTicketStore, type CreateTicket } from '@/stores/createTicketStore'
+import { storeToRefs } from 'pinia'
 import Swal from 'sweetalert2'
 
-const priorityStore = usePriorityStore()
-const form = ref<Priority>({
-  id: 0,
-  name: ''
+const createTicketStore = useCreateTicketStore()
+const { createTickets, totalCount, loading } = storeToRefs(createTicketStore)
+
+const form = ref<CreateTicket>({
+  name: '',
+  subject: '',
+  message: ''
 })
 
 const resetForm = () => {
-  form.value.name = ''
+  ;(form.value.name = ''), (form.value.subject = ''), (form.value.message = '')
 }
-
-priorityStore.getPriority()
 
 const configureSwal = () => {
   return Swal.mixin({
@@ -31,7 +33,7 @@ const configureSwal = () => {
 
 const submitForm = () => {
   if (form.value.name.length > 0) {
-    priorityStore.addPriority(form.value).then(() => {
+    createTicketStore.addTickets(form.value).then(() => {
       const Toast = configureSwal()
       Toast.fire({
         icon: 'success',
@@ -71,22 +73,22 @@ const submitForm = () => {
                 id="name"
                 type="text"
               />
-              <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="name">
+              <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="subject">
                 Subject
               </label>
               <input
-                v-model="form.name"
+                v-model="form.subject"
                 class="text-black border border-gray-400 rounded py-3 px-4"
-                id="name"
+                id="subject"
                 type="text"
               />
-              <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="name">
+              <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="message">
                 Subject
               </label>
               <textarea
-                v-model="form.name"
+                v-model="form.message"
                 class="text-black border border-gray-400 rounded py-3 px-4 resize-none w-[600px]"
-                id="name"
+                id="message"
                 type="text"
               ></textarea>
             </div>
