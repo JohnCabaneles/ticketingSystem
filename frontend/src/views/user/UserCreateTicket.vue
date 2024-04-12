@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import AdminDashboards from '../components/AdminDashboards.vue'
-import SideBar from '@/components/SideBar.vue'
+import SideBar from '@/components/user/SideBar.vue'
+import CreateTicket from '@/components/user/CreateTicket.vue'
 </script>
 
 <template>
   <div class="flex h-screen overflow-hidden">
     <SideBar />
     <div class="flex-1">
-        <AdminDashboards />
+      <CreateTicket />
     </div>
   </div>
 </template>

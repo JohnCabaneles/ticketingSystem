@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 class PriorityController extends Controller
 {
     public function index() {
-        $priority = Priority::orderBy('created at','desc')->get();
+        $priority = Priority::orderBy('created_at','desc')->get();
 
         return response()->json($priority);
     }
