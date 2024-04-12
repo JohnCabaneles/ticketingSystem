@@ -1,20 +1,20 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useCreateTicketStore, type CreateTicket } from '@/stores/createTicketStore'
-import { storeToRefs } from 'pinia'
 import Swal from 'sweetalert2'
 
 const createTicketStore = useCreateTicketStore()
-const { createTickets, totalCount, loading } = storeToRefs(createTicketStore)
 
 const form = ref<CreateTicket>({
-  name: '',
+  id: 0,
   subject: '',
-  message: ''
+  message: '',
+  priorities_id: '',
+  statuses_id: ''
 })
 
 const resetForm = () => {
-  ;(form.value.name = ''), (form.value.subject = ''), (form.value.message = '')
+  ;(form.value.subject = ''), (form.value.message = '')
 }
 
 const configureSwal = () => {
@@ -32,12 +32,12 @@ const configureSwal = () => {
 }
 
 const submitForm = () => {
-  if (form.value.name.length > 0) {
+  if (form.value.subject.length > 0) {
     createTicketStore.addTickets(form.value).then(() => {
       const Toast = configureSwal()
       Toast.fire({
         icon: 'success',
-        title: 'Priority added successfully'
+        title: 'Ticket created successfully'
       })
     })
     resetForm()
@@ -45,7 +45,7 @@ const submitForm = () => {
     const Toast = configureSwal()
     Toast.fire({
       icon: 'error',
-      title: 'Adding priority failed'
+      title: 'Ticket creation failed'
     })
   }
 }
@@ -64,15 +64,6 @@ const submitForm = () => {
                   Create Ticket
                 </label>
               </div>
-              <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="name">
-                Name
-              </label>
-              <input
-                v-model="form.name"
-                class="text-black border border-gray-400 rounded py-3 px-4"
-                id="name"
-                type="text"
-              />
               <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="subject">
                 Subject
               </label>
@@ -83,7 +74,7 @@ const submitForm = () => {
                 type="text"
               />
               <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="message">
-                Subject
+                Message
               </label>
               <textarea
                 v-model="form.message"
