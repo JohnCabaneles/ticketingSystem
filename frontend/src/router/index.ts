@@ -7,7 +7,6 @@ import AdminDepartment from '../views/AdminDepartment.vue'
 import AdminAddUser from '../views/AdminAddUser.vue'
 import AdminRole from '../views/AdminRole.vue'
 
-import UserDashboard from '../views/user/UserDashboard.vue'
 import CreateTicket from '../views/user/UserCreateTicket.vue'
 import MyTicket from '../views/user/UserMyTickets.vue'
 
@@ -48,11 +47,6 @@ const router = createRouter({
       path: '/admin/add/user',
       name: 'adminAddUser',
       component: AdminAddUser
-    },
-    {
-      path: '/user/dashboard',
-      name: 'userDashboard',
-      component: UserDashboard
     },
     {
       path: '/user/create/ticket',

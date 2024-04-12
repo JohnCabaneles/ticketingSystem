@@ -4,7 +4,9 @@ import axios from 'axios'
 export interface CreateTicket {
   id: number
   subject: string
-  message: string
+  message: string  
+  priorities_id: string
+  statuses_id: string
 }
 
 export const useCreateTicketStore = defineStore('createTicketStore', {
