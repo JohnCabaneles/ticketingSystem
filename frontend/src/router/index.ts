@@ -7,6 +7,8 @@ import AdminDepartment from '../views/AdminDepartment.vue'
 import AdminAddUser from '../views/AdminAddUser.vue'
 import AdminRole from '../views/AdminRole.vue'
 
+import CreateTicket from '../views/user/UserCreateTicket.vue'
+import MyTicket from '../views/user/UserMyTickets.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -45,6 +47,16 @@ const router = createRouter({
       path: '/admin/add/user',
       name: 'adminAddUser',
       component: AdminAddUser
+    },
+    {
+      path: '/user/create/ticket',
+      name: 'createTicket',
+      component: CreateTicket
+    },
+    {
+      path: '/user/tickets',
+      name: 'myTickets',
+      component: MyTicket
     }
   ]
 })

@@ -14,13 +14,6 @@ use Illuminate\Validation\Rules\Password;
 
 class RegisteredUserController extends Controller
 {
-    public function index() {
-        $user = User::all();
-
-        return response()->json($user);
-    }
-
-
     /**
      * Handle an incoming registration request.
      *
@@ -34,15 +27,15 @@ class RegisteredUserController extends Controller
             'departments_id' => ['required', 'string', 'max:50'],
             'contact_number' => ['required', 'string', 'max:15'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['string']
+            'password' => ['string'],
         ]);
 
         $formFields['user_id'] = auth()->id();
         
         $user = User::create([
             'name' => $request->name,
-            'roles_id' => $request->role,
-            'departments_id' => $request->department,
+            'roles_id' => $request->roles_id,
+            'departments_id' => $request->departments_id,
             'contact_number' => $request->contact_number,
             'email' => $request->email,
             'password' => Hash::make($request->password),
