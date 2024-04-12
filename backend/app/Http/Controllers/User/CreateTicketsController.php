@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Users;
+namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Users\CreateTickets;
+use App\Models\User\CreateTickets;
 
 class CreateTicketsController extends Controller
 {
@@ -22,9 +22,11 @@ class CreateTicketsController extends Controller
 
     public function store(Request $request) {
         $formFields = $request->validate([
-            'name' => ['required','string','max:25'],
             'subject' => ['required','string','max:100'],
-            'message' => ['required','string','max:255']
+            'message' => ['required','string','max:255'],
+            'departments_id' => ['string', 'max:50'],
+            'priorities_id' => ['string', 'max:50'],
+            'statuses_id' => ['string', 'max:50'],
         ]);
  
         $formFields['user_id'] = auth()->id();

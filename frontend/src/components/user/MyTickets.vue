@@ -1,4 +1,19 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useCreateTicketStore, CreateTicket } from '@/stores/createTicketStore'
+import { storeToRefs } from 'pinia'
+import { formToJSON } from 'axios';
+
+const createTicketStore = useCreateTicketStore()
+const { createTickets, totalCount, loading } = storeToRefs(createTicketStore)
+
+
+
+
+
+
+
+</script>
 <template>
   <!-- Main -->
   <div class="w-full h-full">
@@ -71,14 +86,14 @@
                 </div>
                 <tbody v-else>
                   <tr
-                    v-for="priority in priorities"
-                    :key="priority.id"
+                    v-for="createTicket in createTickets"
+                    :key="createTicket.id"
                     class="bg-gray-100 text-center border-b text-sm text-gray-600"
                   >
-                    <td class="p-2 border-r">{{ priority.name }}</td>
+                    <td class="p-2 border-r">{{ createTicket.name }}</td>
                     <td>
                       <button
-                        @click="openUpdateModal(priority)"
+                        @click="openUpdateModal(createTicket)"
                         class="bg-blue-500 hover:bg-blue-600 p-2 text-white rounded-lg mr-2 hover:shadow-lg text-xs font-thin"
                       >
                         Edit
@@ -127,7 +142,7 @@
                         </div>
                       </div>
                       <button
-                        @click="deletePriority(priority.id)"
+                        @click="deletePriority(createTicket.id)"
                         class="bg-red-500 hover:bg-red-600 p-2 text-white rounded-lg hover:shadow-lg text-xs font-thin"
                       >
                         Remove
