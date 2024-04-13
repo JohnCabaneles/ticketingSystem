@@ -51,7 +51,7 @@ export const useUserStatusStore = defineStore('userStatusStore', {
     async getTotalPending() {
       this.loading = true
       try {
-        const response = await axios.get('api/user/total/pending')
+        const response = await axios.get('/api/user/total/pending')
         this.totalPending = response.data
         console.log('Total pending:', this.totalPending.length)
         this.loading = false
