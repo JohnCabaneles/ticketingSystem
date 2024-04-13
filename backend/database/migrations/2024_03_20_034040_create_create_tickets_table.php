@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('statuses_id')->nullable()->constrained('statuses');
             $table->string('subject');
             $table->longText('message');
+            $table->foreignId('created_by')->constrained('users');   
             $table->timestamps();
         });
     }
