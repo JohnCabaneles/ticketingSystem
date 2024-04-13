@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useCreateTicketStore, type CreateTicket } from '@/stores/createTicketStore'
-import { storeToRefs } from 'pinia'
 import Swal from 'sweetalert2'
 
 const createTicketStore = useCreateTicketStore()
-const { createTickets, totalCount, loading } = storeToRefs(createTicketStore)
 
 const form = ref<CreateTicket>({
   id: 0,
   subject: '',
-  message: ''
+  message: '',
+  priorities_id: '',
+  statuses_id: ''
 })
 
 const resetForm = () => {
@@ -74,7 +74,7 @@ const submitForm = () => {
                 type="text"
               />
               <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="message">
-                Subject
+                Message
               </label>
               <textarea
                 v-model="form.message"

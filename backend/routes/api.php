@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\User\CreateTicketsController;
+use App\Http\Controllers\User\UserStatusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,4 +40,7 @@ Route::prefix('admin')->group(function() {
 Route::prefix('user')->group(function() {
     Route::apiResource('/create/ticket', CreateTicketsController::class);
     Route::apiResource('/total/ticket',CreateTicketsController::class);
+    Route::get('/total/resolved', [UserStatusController::class,'indexResolved']);
+    Route::get('/total/pending', [UserStatusController::class,'indexPending']);
+    Route::get('/total/ongoing', [UserStatusController::class,'indexOngoing']);
 });

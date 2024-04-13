@@ -29,11 +29,6 @@ const signOut = async () => {
       <div class="px-[20px] flex flex-col space-y-[10px]">
         <div class="h-auto">
           <router-link
-            to="/user/dashboard"
-            class="inline-flex relative items-center py-[10px] px-[10px] my-[10px] w-full text-sm font-medium rounded-md rounded-b-lg hover:bg-gray-300 hover:text-gray-600"
-            ><Squares2X2Icon class="w-5 h-5 mr-2" />Dashboard
-          </router-link>
-          <router-link
             to="/user/tickets"
             class="inline-flex relative items-center py-[10px] px-[10px] my-[10px] w-full text-sm font-medium rounded-md rounded-b-lg hover:bg-gray-300 hover:text-gray-600"
             ><ChevronRightIcon class="w-5 h-5 mr-2" />My Tickets
