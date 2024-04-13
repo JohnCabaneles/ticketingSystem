@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\StatusController;
 use App\Http\Controllers\Admin\PriorityController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DepartmentController;
+use App\Http\Controllers\Admin\TicketController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\User\CreateTicketsController;
 use App\Http\Controllers\User\UserStatusController;
@@ -32,6 +33,7 @@ Route::prefix('admin')->group(function() {
     Route::apiResource('/role', RoleController::class);
     Route::apiResource('/department', DepartmentController::class);
     Route::apiResource('/priority',PriorityController::class);
+    Route::apiResource('/ticket',TicketController::class);
     Route::get('/total/user', [DashboardController::class, 'indexUser']);
     Route::get('/total/admin', [DashboardController::class, 'indexAdmin']);
     Route::get('/total/support', [DashboardController::class, 'indexSupport']);

@@ -28,7 +28,7 @@ export const useUserStatusStore = defineStore('userStatusStore', {
       return state.totalResolved.length
     },
     totalPendingCount: (state) => {
-      return state.totalResolved.length
+      return state.totalPending.length
     },
     totalOngoingCount: (state) => {
       return state.totalOngoing.length
@@ -50,7 +50,7 @@ export const useUserStatusStore = defineStore('userStatusStore', {
     async getTotalPending() {
       this.loading = true
       try {
-        const response = await axios.get('api/user/total/pending')
+        const response = await axios.get('/api/user/total/pending')
         this.totalPending = response.data
         console.log('Total pending:', this.totalPending.length)
       } catch (error) {
