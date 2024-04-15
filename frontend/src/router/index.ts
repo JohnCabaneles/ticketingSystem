@@ -9,6 +9,7 @@ import AdminRole from '../views/AdminRole.vue'
 
 import CreateTicket from '../views/user/UserCreateTicket.vue'
 import MyTicket from '../views/user/UserMyTickets.vue'
+import AdminTicket from '../views/AdminTicket.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,6 +18,11 @@ const router = createRouter({
       path: '/',
       name: 'signIn',
       component: SignIn
+    },
+    { 
+      path: '/admin/ticket',
+      name: 'adminTicket',
+      component: AdminTicket
     },
     {
       path: '/admin/dashboard',

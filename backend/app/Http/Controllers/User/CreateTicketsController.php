@@ -30,6 +30,7 @@ class CreateTicketsController extends Controller
         ]);
  
         $formFields['user_id'] = auth()->id();
+        $formFields['created_by'] = auth()->id();
 
         $ticket = CreateTickets::create($formFields);
 
