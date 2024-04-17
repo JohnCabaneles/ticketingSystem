@@ -14,6 +14,7 @@ export interface AddUser {
 export const useAddUserStore = defineStore('addUserStore', {
   state: () => ({
     addUsers: <AddUser[]>[],
+    name: '',
     loading: false
   }),
   getters: {
@@ -27,6 +28,7 @@ export const useAddUserStore = defineStore('addUserStore', {
       try {
         const response = await axios.get('/api/admin/total/user')
         this.addUsers = response.data
+        this.name = response.data
         this.loading = false
       } catch (error) {
         console.error('Error Adding Users', error)
@@ -39,7 +41,8 @@ export const useAddUserStore = defineStore('addUserStore', {
           roles_id: addUser.roles_id,
           departments_id: addUser.departments_id,
           contact_number: addUser.contact_number,
-          email: addUser.email
+          email: addUser.email,
+          password: addUser.password
         })
         this.addUsers.push(response.data)
         console.log('User added successfully', response.data)
