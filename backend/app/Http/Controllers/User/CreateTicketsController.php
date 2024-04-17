@@ -37,4 +37,6 @@ class CreateTicketsController extends Controller
         return response()->json($ticket, 201);
     }
 
+    
+
 } 
