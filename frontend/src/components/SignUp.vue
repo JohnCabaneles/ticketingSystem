@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { useAddUserStore, type AddUser } from '@/stores/addUserStore'
 import { storeToRefs } from 'pinia'
 import Swal from 'sweetalert2'
+import router from '@/router';
 
 const addUserStore = useAddUserStore()
 const { addUsers, totalCount, loading } = storeToRefs(addUserStore)
@@ -33,6 +34,7 @@ const resetForm = () => {
   form.value.departments_id = ''
   form.value.contact_number = ''
   form.value.email = ''
+  form.value.password = ''
 }
 
 addUserStore.getAddUser()
@@ -169,6 +171,15 @@ const deleteAddUser = (id: number) => {
                 class="text-black border border-gray-400 rounded py-1 px-2"
                 id="email"
                 type="email"
+              />
+              <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="password">
+                Password
+              </label>
+              <input
+                v-model="form.password"
+                class="text-black border border-gray-400 rounded py-1 px-2"
+                id="password"
+                type="password"
               />
             </div>
           </div>

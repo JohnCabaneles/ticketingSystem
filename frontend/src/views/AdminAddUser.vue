@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import AdminAddUser from '../components/AdminAddUser.vue'
+import SignUp from '../components/SignUp.vue'
 import SideBar from '@/components/SideBar.vue'
 </script>
 
 <template>
   <div class="w-screen h-screen flex">
     <SideBar />
-    <AdminAddUser />
+    <SignUp />
   </div>
 </template>
