@@ -27,9 +27,7 @@ class UserFactory extends Factory
             'name' => fake()->name(),
             'email' => 'admin@admin.com',
             'contact_number' => fake()->numberBetween(0, 9),
-            'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
-            'remember_token' => Str::random(10),
         ];
     }
 
