@@ -14,6 +14,16 @@ use Illuminate\Validation\Rules\Password;
 
 class RegisteredUserController extends Controller
 {
+
+    public function show()
+{
+    $user = Auth::user();
+
+    return view('users.app', [
+        'user' => $user
+    ]);
+}
+
     /**
      * Handle an incoming registration request.
      *
@@ -21,16 +31,14 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-        $formFields = $request->validate([
+        $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'roles_id' => ['required', 'string', 'max:50'],
             'departments_id' => ['required', 'string', 'max:50'],
             'contact_number' => ['required', 'string', 'max:15'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['string'],
+            'password' => ['required', 'string'],
         ]);
-
-        $formFields['user_id'] = auth()->id();
         
         $user = User::create([
             'name' => $request->name,
@@ -40,6 +48,10 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        event(new Registered($user));
+
+        Auth::login($user);
 
 
         return response()->json($user, 201);

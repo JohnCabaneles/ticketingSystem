@@ -6,6 +6,7 @@ import AdminStatus from '../views/AdminStatus.vue'
 import AdminDepartment from '../views/AdminDepartment.vue'
 import AdminAddUser from '../views/AdminAddUser.vue'
 import AdminRole from '../views/AdminRole.vue'
+// import SignUp from '../components/SignUp.vue'
 
 import CreateTicket from '../views/user/UserCreateTicket.vue'
 import MyTicket from '../views/user/UserMyTickets.vue'
@@ -19,6 +20,11 @@ const router = createRouter({
       name: 'signIn',
       component: SignIn
     },
+    // {
+    //   path: '/register',
+    //   name: 'signUp',
+    //   component: SignUp
+    // },
     { 
       path: '/admin/ticket',
       name: 'adminTicket',
