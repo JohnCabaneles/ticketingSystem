@@ -3,6 +3,8 @@ import axios from 'axios'
 
 export interface CreateTicket {
   id: number
+  name: string
+  email: string
   subject: string
   message: string  
   priorities_id: string
