@@ -96,8 +96,10 @@ body {
 .app-scroll-hidden::-webkit-scrollbar-thumb {
   border-radius: 0px;
 }
+/* Center the .messenger-headTitle */
 .messenger-headTitle {
-  margin: 0rem 0.7rem;
+  flex: 1; /* Grow to fill remaining space */
+  text-align: center;
 }
 .messenger {
   display: inline-flex;
@@ -146,6 +148,17 @@ body {
   font-weight: 600;
   background: transparent;
 }
+.avatar-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Center vertically */
+}
+
+.avatar-container {
+  display: flex;
+  align-items: center; /* Center vertically */
+}
+
 .m-header-right {
   display: flex;
   align-items: center;

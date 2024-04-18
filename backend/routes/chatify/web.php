@@ -10,6 +10,11 @@
 
 use Illuminate\Support\Facades\Route;
 
+/**
+ * Fetch tickets from database by id
+ */
+
+
 /*
 * This is the main app route [Chatify Messenger]
 */

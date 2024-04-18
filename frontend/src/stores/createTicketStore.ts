@@ -3,46 +3,24 @@ import axios from 'axios'
 
 export interface CreateTicket {
   id: number
-  name: string
-  email: string
-  subject: string
   message: string  
-  priorities_id: string
-  statuses_id: string
 }
 
 export const useCreateTicketStore = defineStore('createTicketStore', {
   state: () => ({
-    createTickets: <CreateTicket[]>[],
+    tickets: [] as CreateTicket[],
     loading: false
   }),
-  getters: {
-    totalCount: (state) => {
-      return state.createTickets.length
-    }
-  },
   actions: {
-    async getTicket() {
-      this.loading = true
+    async addTicket(ticket: CreateTicket) {
       try {
-        const response = await axios.get('/api/user/total/ticket')
-        this.createTickets = response.data
-        this.loading = false
+        const response = await axios.post('/api/send/ticket', ticket)
+        const newTicket = response.data as CreateTicket
+        this.tickets.push(newTicket)
+        return newTicket
       } catch (error) {
-        console.error('Error loading tickets', error)
-      }
-    },
-
-    async addTickets(createTicket: CreateTicket) {
-      try {
-        const response = await axios.post('/api/user/create/ticket', {
-          subject: createTicket.subject,
-          message: createTicket.message
-        })
-        this.createTickets.push(response.data)
-        console.log('Ticket created successfully', response.data)
-      } catch (error) {
-        console.error('Error adding ticket', error)
+        console.error('Error adding ticket:', error)
+        throw error
       }
     }
   }
