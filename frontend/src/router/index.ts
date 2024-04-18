@@ -1,13 +1,13 @@
-import SignIn from '../components/SignIn.vue'
 import { createRouter, createWebHistory } from 'vue-router'
+import AdminSignIn from '../components/AdminSignIn.vue'
+import UserSignIn from '../components/user/UserSignIn.vue'
+import LogInAs from '../components/LogInAs.vue'
 import AdminDashboard from '../views/AdminDashboard.vue'
 import AdminPriority from '../views/AdminPriority.vue'
 import AdminStatus from '../views/AdminStatus.vue'
 import AdminDepartment from '../views/AdminDepartment.vue'
 import AdminAddUser from '../views/AdminAddUser.vue'
 import AdminRole from '../views/AdminRole.vue'
-// import SignUp from '../components/SignUp.vue'
-
 import CreateTicket from '../views/user/UserCreateTicket.vue'
 
 const router = createRouter({
@@ -15,8 +15,18 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'signIn',
-      component: SignIn
+      name: 'LogInAs',
+      component: LogInAs
+    },
+    {
+      path: '/admin/signin',
+      name: 'adminSignIn',
+      component: AdminSignIn
+    },
+    {
+      path: '/user/signin',
+      name: 'userSignIn',
+      component: UserSignIn
     },
     {
       path: '/admin/dashboard',
