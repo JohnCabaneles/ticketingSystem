@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { useLoginStore } from '@/stores/loginStore'
 import Swal from 'sweetalert2'
+import router from '@/router';
 
 const loginStore = useLoginStore()
 const form = ref({
@@ -28,17 +29,22 @@ const handleLogin = async () => {
         await loginStore.handleLogin({
             email: form.value.email,
             password: form.value.password,
-            onSuccess: () => {
-                const Toast = configureSwal()
+        }).then(() => {
+            const Toast = configureSwal()
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Log-in Successfully'
+                })
+        })
+        router.push('/admin/dashboard')
+    } catch (error) {
+        console.error('Invalid credentials:', error)
+        const Toast = configureSwal()
                 Toast.fire({
                     icon: 'success',
                     title: 'Log-in Successfully'
                 })
             }
-        })
-    } catch (error) {
-        console.error('Invalid credentials:', error)        
-    }
 }
 </script>
 

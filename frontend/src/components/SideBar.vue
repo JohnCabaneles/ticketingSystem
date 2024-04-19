@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import {
-  ArrowLeftStartOnRectangleIcon,
   ChevronRightIcon,
   Squares2X2Icon
 } from '@heroicons/vue/24/outline'
@@ -31,13 +30,13 @@ const signOut = async () => {
           <router-link
             to="/admin/dashboard"
             class="inline-flex relative items-center py-[10px] px-[10px] my-[10px] w-full text-sm font-medium rounded-md rounded-b-lg hover:bg-gray-300 hover:text-gray-600"
-            ><Squares2X2Icon class="w-5 h-5 mr-2" />Dashboard
+            ><Squares2X2Icon class="w-5 h-5 mr-2" />Dashboard 
           </router-link>
-          <router-link
-            to="/admin/ticket"
+          <a href="http://localhost:8000/chatify" 
             class="inline-flex relative items-center py-[10px] px-[10px] my-[10px] w-full text-sm font-medium rounded-md rounded-b-lg hover:bg-gray-300 hover:text-gray-600"
-            ><ChevronRightIcon class="w-5 h-5 mr-2" />Tickets
-          </router-link>
+            >
+            <ChevronRightIcon class="w-5 h-5 mr-2" />Chat 
+          </a>
           <router-link
             to="/admin/status"
             class="inline-flex relative items-center py-[10px] px-[10px] my-[10px] w-full text-sm font-medium rounded-md rounded-b-lg hover:bg-gray-300 hover:text-gray-600"

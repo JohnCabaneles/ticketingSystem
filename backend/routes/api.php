@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\TicketController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\User\CreateTicketsController;
 use App\Http\Controllers\User\UserStatusController;
+use App\Http\Controllers\vendor\Chatify\MessagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,9 +41,12 @@ Route::prefix('admin')->group(function() {
 });
 
 Route::prefix('user')->group(function() {
-    Route::apiResource('/create/ticket', CreateTicketsController::class);
-    Route::apiResource('/total/ticket',CreateTicketsController::class);
     Route::get('/total/resolved', [UserStatusController::class,'indexResolved']);
     Route::get('/total/pending', [UserStatusController::class,'indexPending']);
     Route::get('/total/ongoing', [UserStatusController::class,'indexOngoing']);
 });
+
+/**
+ * Send message route
+ */
+Route::post('/send/ticket', [MessagesController::class, 'send']);

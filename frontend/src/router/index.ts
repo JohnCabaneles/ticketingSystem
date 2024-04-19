@@ -1,76 +1,93 @@
-import SignIn from '../components/SignIn.vue'
 import { createRouter, createWebHistory } from 'vue-router'
+import AdminSignIn from '../components/AdminSignIn.vue'
+import UserSignIn from '../components/user/UserSignIn.vue'
+import LogInAs from '../components/LogInAs.vue'
+import UnauthorizedAccess from '../components/UnauthorizedAccess.vue'
 import AdminDashboard from '../views/AdminDashboard.vue'
 import AdminPriority from '../views/AdminPriority.vue'
 import AdminStatus from '../views/AdminStatus.vue'
 import AdminDepartment from '../views/AdminDepartment.vue'
 import AdminAddUser from '../views/AdminAddUser.vue'
 import AdminRole from '../views/AdminRole.vue'
-// import SignUp from '../components/SignUp.vue'
-
 import CreateTicket from '../views/user/UserCreateTicket.vue'
-import MyTicket from '../views/user/UserMyTickets.vue'
-import AdminTicket from '../views/AdminTicket.vue'
+import { useLoginStore } from '@/stores/loginStore'
+
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'signIn',
-      component: SignIn
+      name: 'LogInAs',
+      component: LogInAs
     },
-    // {
-    //   path: '/register',
-    //   name: 'signUp',
-    //   component: SignUp
-    // },
-    { 
-      path: '/admin/ticket',
-      name: 'adminTicket',
-      component: AdminTicket
+    {
+      path: '/admin/signin',
+      name: 'adminSignIn',
+      component: AdminSignIn
+    },
+    {
+      path: '/user/signin',
+      name: 'userSignIn',
+      component: UserSignIn
+    },
+    {
+      path: '/unauthorized',
+      name: 'unauthorized',
+      component: UnauthorizedAccess
     },
     {
       path: '/admin/dashboard',
       name: 'adminDashboard',
-      component: AdminDashboard
+      component: AdminDashboard,
+      meta: { requiresAuth: true }
     },
     {
       path: '/admin/priority',
       name: 'adminPriority',
-      component: AdminPriority
+      component: AdminPriority,
+      meta: { requiresAuth: true }
     },
     {
       path: '/admin/status',
       name: 'adminStatus',
-      component: AdminStatus
+      component: AdminStatus,
+      meta: { requiresAuth: true }
     },
     {
       path: '/admin/roles',
       name: 'adminRole',
-      component: AdminRole
+      component: AdminRole,
+      meta: { requiresAuth: true }
     },
     {
       path: '/admin/department',
       name: 'adminDepartment',
-      component: AdminDepartment
+      component: AdminDepartment,
+      meta: { requiresAuth: true }
     },
     {
       path: '/admin/add/user',
       name: 'adminAddUser',
-      component: AdminAddUser
+      component: AdminAddUser,
+      meta: { requiresAuth: true }
     },
     {
       path: '/user/create/ticket',
       name: 'createTicket',
-      component: CreateTicket
+      component: CreateTicket,
+      meta: { requiresAuth: true }
     },
-    {
-      path: '/user/tickets',
-      name: 'myTickets',
-      component: MyTicket
-    }
   ]
+})
+
+router.beforeEach((to) => {
+  // ✅ This will work because the router starts its navigation after
+  // the router is installed and pinia will be installed too
+  const store = useLoginStore()
+
+  if (to.meta.requiresAuth && !store.handleLogin) return '/'
 })
 
 export default router
