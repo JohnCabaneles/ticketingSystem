@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
-import router from '@/router'
 
 export interface Login {
   email: string
@@ -33,7 +32,6 @@ export const useLoginStore = defineStore('loginStore', {
         }
 
         console.log('success', response.data)
-        router.push('/admin/dashboard')
       } catch (error) {
         console.error('Invalid credentials', error)
       }
