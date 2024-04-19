@@ -1,4 +1,26 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
+import axios from 'axios'
+
+const name = ref('')
+const user_id = ref('')
+
+const getUser = async () => {
+  try {
+  const response = await axios.get('/api/user')
+  name.value = response.data.name;
+  user_id.value =  response.data.id
+  } catch (error) {
+    console.error('Error getting user:', error);
+  }
+}
+
+onMounted (() => {
+  getUser()
+})
+
+</script>
+
 
 <template>
   <div class="relative bg-indigo-200 dark:bg-indigo-500 p-4 sm:p-6 rounded-sm overflow-hidden mb-8">
@@ -50,7 +72,7 @@
     <!-- Content -->
     <div class="relative">
       <h1 class="text-2xl md:text-3xl text-slate-800 dark:text-slate-100 font-bold mb-1">
-        Good afternoon, Acme Inc. 👋
+        Good afternoon, {{ name }}. 👋
       </h1>
       <p class="dark:text-indigo-200">Here is what’s happening with your projects today:</p>
     </div>

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\ChMessage;
 use App\Models\Admin\Role;
 use App\Models\Admin\Status;
 use App\Models\Admin\Priority;
@@ -64,5 +65,9 @@ class User extends Authenticatable
 
     public function role() {
         return $this->hasOne(Role::class, 'user_id');
+    }
+
+    public function chMessage() {
+        return $this->hasOne(ChMessage::class, 'user_id');
     }
 }
