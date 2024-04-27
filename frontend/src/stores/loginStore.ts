@@ -26,11 +26,9 @@ export const useLoginStore = defineStore('loginStore', {
           email: options.email,
           password: options.password
         })
-
         if (options.onSuccess) {
           options.onSuccess()
         }
-
         console.log('success', response.data)
       } catch (error) {
         console.error('Invalid credentials', error)

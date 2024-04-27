@@ -70,4 +70,5 @@ class User extends Authenticatable
     public function chMessage() {
         return $this->hasOne(ChMessage::class, 'user_id');
     }
+
 }
